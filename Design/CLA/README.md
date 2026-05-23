@@ -55,5 +55,5 @@ To maintain high efficiency and coding standards, the testbench infrastructure w
 
 Because there are 512 possible combinations, Tcl-Console screenshots include only a few of them and waveforms includes one example of how to check the result(c_in = 0, A = 0, B = f => sum = f, c_out = 0)
 
-![Wveforms](/results/waveforms.png)
-![Tcl Console](/results/Tcl_Console.png)
+![Wveforms](results/waveforms.png)
+![Tcl Console](results/Tcl_Console.png)
