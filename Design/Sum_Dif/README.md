@@ -53,7 +53,7 @@ To maintain high efficiency and coding standards, the testbench infrastructure w
 1. Performs a manual reset of all ports.
 2. Uses nested for-loops to iterate through all states of Addition and Subtraction for every possible $A$ and $B$ value.
 3. Monitors and logs changes using `$monitor` with a structured layout.
-4. Uses a fixed delay of `#50` between modifications and a `#500` delay before `$finish` to safely observe edge cases.
+4. Uses a fixed delay of `#5` between modifications and a `#500` delay before `$finish` to safely observe edge cases.
 
 ## Project Structure
 | Folder/File | Description |
@@ -62,6 +62,7 @@ To maintain high efficiency and coding standards, the testbench infrastructure w
 | `Testbench` | Contains the exhaustive simulation environment `tb_add_sub_4bit.v`. |
 | `guide_images` | Technical reference images for the CLA logic. |
 | `results` | Waveform and console output evidence. |
+| `Run_to_time_guide` | Images with guidance regarding simulation time. |
 
 ## How to Run
 1. Open Vivado Xilinx and create a new project.
@@ -71,6 +72,8 @@ To maintain high efficiency and coding standards, the testbench infrastructure w
 
 ## Results
 Because there are 512 possible combinations, Tcl-Console screenshots include only a few of them and waveforms include specific examples of how to check the results for both addition and subtraction.
+
+* Note: Because there are 512 combinations for A , B , is_sub, 1000ns Run to time won't be enough. To extend the simulation time, open `Run_to_time_guide` folder for instructions.
 
 ## Waveforms and Tcl-Console for SUM:
 ![Waveforms](results/waveforms_sum.png)
