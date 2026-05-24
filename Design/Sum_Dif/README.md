@@ -67,7 +67,7 @@ To maintain high efficiency and coding standards, the testbench infrastructure w
 ## How to Run
 1. Open Vivado Xilinx and create a new project.
 2. Add the `.v` files from the `Design` and `Testbench` folders.
-3. **Simulation Note:** Since this is an exhaustive test, ensure the simulation runtime is set to at least `26000ns` (Simulation Settings -> xsim.simulate.runtime) to accommodate the 512 iterations with `#5` delays.
+3. **Simulation Note:** Since this is an exhaustive test, ensure the simulation runtime is set to at least `2560ns` (Simulation Settings -> xsim.simulate.runtime) to accommodate the 512 iterations with `#5` delays.
 4. Click `Run Simulation` and observe the Tcl Console for the real-time truth table output.
 
 ## Results
@@ -77,7 +77,7 @@ Because there are 512 possible combinations, Tcl-Console screenshots include onl
 
 ## Waveforms and Tcl-Console for SUM:
 ![Waveforms](results/waveforms_sum.png)
-![Tcl Console](results/Tcl_Console_dif.png)
+![Tcl Console](results/Tcl_Console_sum.png)
 
 
 ## Waveforms and Tcl for DIF:
@@ -97,8 +97,10 @@ Similar for waveforms:
 
 * A = 5 = 0101 | B = 7 = 0111 => (-B) = 1001 | A + (-B) = 1110 = 14 = e | carry_out = 0 -> There is borrow
 
-To perform 2's compliment :
-* Invert all the bits( 1 -> 0 ; 0 -> 1 )
-* Add +1 to the result
+To read a negative 2's complement result (like finding out what `1110` means):
+* Invert all the bits (1's complement: 1 -> 0 ; 0 -> 1)
+* Add +0001 to the result to get the absolute magnitude
 
-* Ex: To transform 1110(14) in -2 : 1110 -> 0001(2's complement) -> + 0001 = 0010 = -2 
+* Ex: To verify that 1110 represents -2 in decimal: 
+  1110 -> 0001 (inverted) -> + 0001 = 0010 (which is 2 in decimal). 
+  Since the original sign bit was 1, the value is confirmed to be -2.
