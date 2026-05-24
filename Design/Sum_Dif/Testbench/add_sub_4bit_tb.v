@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 05/23/2026 10:44:38 PM
+// Create Date: 05/23/2026 10:42:54 PM
 // Design Name: 
-// Module Name: cla_4bit_tb
+// Module Name: cla_4bit
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,39 +19,40 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-module cla_4bit_tb;
+module add_sub_4bit_tb;
 
     reg [3:0] A;
     reg [3:0] B;
-    reg c_in;
+    reg is_sub;
     
     wire [3:0] sum;
-    wire c_out;
+    wire carry_out;
 
     integer i, j, k;
 
-    cla_4bit TEST (
-        .c_in(c_in),
+    add_sub_4bit TEST (
         .A(A),
         .B(B),
+        .is_sub(is_sub),
         .sum(sum),
-        .c_out(c_out)
+        .carry_out(carry_out)
     );
 
     initial begin
-        {A, B, c_in} = 0;
+        {A, B, is_sub} = 0;
 
-        $monitor("Time = %0t | A = %b | B = %b | c_in = %b | sum = %b | c_out = %b", 
-                 $time, A, B, c_in, sum, c_out);
+        $monitor("Time = %0t | is_sub = %b | A = %b | B = %b | sum = %b | carry_out = %b", 
+                 $time, is_sub, A, B, sum, carry_out);
 
         for (k = 0; k < 2; k = k + 1) begin
             for (i = 0; i < 16; i = i + 1) begin
                 for (j = 0; j < 16; j = j + 1) begin
+                    
                     #5;
-                    c_in = k;
+                    is_sub = k;
                     A = i;
                     B = j;
+                    
                 end
             end
         end
