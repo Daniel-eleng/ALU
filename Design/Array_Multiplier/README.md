@@ -33,13 +33,13 @@ In elementary school mathematics, when writing the second row of a multiplicatio
 However, in digital hardware, shifting a line to the left means we would need continuously growing adders (e.g., a 5-bit adder, then a 6-bit adder), which wastes fixed silicon area. 
 
 **The Solution:** Instead of shifting the bottom row to the *left*, we drop the Least Significant Bit (LSB) of the top row directly into the final product, and shift the remaining bits of the top row to the *right*. 
-* **Hardware Example (Fixed Width of 3 digits):**
+**Hardware Example (Fixed Width of 3 digits):**
     * Row 1: 738
     * Row 2: 615
     * *Step 1:* Drop the '8' from Row 1 to the final result.
     * *Step 2:* Shift the rest of Row 1 to the right: 073.
     * *Step 3:* Add the shifted Row 1 to Row 2: 073 + 615 = 688.
-    * *Step 4:* Append the dropped '8' to the end: 6888. 
+    * *Step 4:* Append the dropped '8' to the end: 6888.
 
 The mathematical result is identical, but the hardware can now use standardized, fixed-width components for every stage.
 
