@@ -4,7 +4,7 @@
 This project features a structural 4-bit x 4-bit hardware multiplier implemented in Verilog. The core arithmetic relies on a combinational array approach, heavily optimized for speed and readability. It focuses on modular instantiation, structural routing over behavioral loops, and the reuse of high-performance Carry Lookahead Adder (CLA) blocks. 
 
 ## Literature Reference & Inspiration
-The foundational architecture for this design was inspired by the "Multiplying" chapter (pages 416-419) of **"Digital Design Principles and Practices" by John F. Wakerly**. 
+The foundational architecture for this design was inspired by the "Multiplying" chapter (pages 416-419) of **"Digital Design Principles and Practices" by John F. Wakerly**.
 
 While Wakerly's textbook uses 8-bit operands for its primary examples, this project scales the design down to 4-bit. This decision was made to maintain consistency with the previously developed 4-bit ALU modules and to keep the gate-level schematics clear and comprehensible. 
 

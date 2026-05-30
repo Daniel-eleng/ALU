@@ -4,11 +4,13 @@
 *.sim/
 *.hw/
 *.ip_user_files/
+xsim.dir/
 
-# Log and journal files
+# Log, journal, and state files
 *.jou
 *.log
 *.str
+*.pb
 
 # Project files (optional to ignore if you want others to create their own)
 *.xpr
