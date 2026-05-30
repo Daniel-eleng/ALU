@@ -75,7 +75,7 @@ Instantiation must be done by name. Initialize variables to 0. Generate a $monit
 | `guide_waveforms` | Image with guidance on how to change waveform result from hexa to decimal. |
 
 ## Final Notes:
-By default, hardware simulators may display bus values in Hexadecimal. To verify the bit-level shifting visually, it is highly recommended to change the waveform display radix for data_in and data_out to Binary.
+By default, hardware simulators may display bus values in Hexadecimal. To verify the bit-level shifting visually, it is highly recommended to change the waveform display radix for data_in and data_out to Binary. If you are unsure how to correctly import these dependencies, please consult the instructional screenshots provided in the guide_images folder.
 
 # Results
 
