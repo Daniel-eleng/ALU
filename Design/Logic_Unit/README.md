@@ -44,4 +44,3 @@ Because there are 1024 possible combinations of `A`, `B` and `op_sel`, to see al
 
 ![Tcl_Console](results/Tcl_Console.png)
 ![waveforms](results/waveforms.png)
-
