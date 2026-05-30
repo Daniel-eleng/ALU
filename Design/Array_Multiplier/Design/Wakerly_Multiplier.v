@@ -1,40 +1,52 @@
-`timescale 1 ns / 100 ps
-module Vrbarrel16_tb () ;
- reg [15:0] DIN; // Data inputs
- reg [3:0] S; // Shift amount, 0-15
- reg [2:0] C; // Mode control
- wire [15:0] DOUT; // Data bus output
- integer i, sh, errors;
- parameter SEED = 1;
- task checksh; // Task to compare UUT output (DOUT) with expected (WANT)
- input [15:0] WANT;
- begin
- if (WANT!==DOUT) begin
- errors = errors + 1;
- $display("Error: C=%3b, S=%4b, DIN=%16b, want %16b, got %16b",
- C, S, DIN, WANT, DOUT);
- end
- end
- endtask
- Vrbarrel16_s UUT ( .DIN(DIN), .S(S), .C(C), .DOUT(DOUT) );
- initial begin
- errors = 0; DIN = $random(SEED);
- for (i=0; i<2500; i=i+1) begin // Test 2500 random input data vectors
- DIN = $random; // Apply random data input
- for (sh=0; sh<=15; sh=sh+1) begin // Test all possible shift amounts
- S = sh; // Apply shift amount
- // And test all eight control values
- C = Lrotate; #10 ; checksh(Vrol(DIN,S));
- C = Rrotate; #10 ; checksh(Vror(DIN,S));
- C = Llogical; #10 ; checksh(Vsll(DIN,S));
- C = Rlogical; #10 ; checksh(Vsrl(DIN,S));
- C = Larith; #10 ; checksh(Vsla(DIN,S));
- C = Rarith; #10 ; checksh(Vsra(DIN,S));
- C = unused1; #10 ; checksh(DIN);
- C = unused2; #10 ; checksh(DIN);
- end
- end
- $display("Test done, %0d errors", errors);
- $stop(1);
- end
+`timescale 1ns / 1ps
+module Vrmul8x8p(X, Y, P);
+    input [7:0] X, Y;
+    output reg [15:0] P; 
+    
+    reg PC [0:7][7:0];  
+    reg PCS [0:7][7:0]; 
+    reg PCC [0:7][7:0]; 
+    
+    reg [6:0] RAS; 
+    reg [7:0] RAC; 
+    integer i, j;
+    
+    function MAJ;
+        input I1, I2, I3;
+        MAJ = (I1 & I2) | (I1 & I3) | (I2 & I3);
+    endfunction
+    
+    always @ (*) begin
+        for (i=0; i<=7; i=i+1)
+            for (j=0; j<=7; j=j+1)
+                PC[i][j] = Y[i] ? X [j] : 1'b0; 
+                
+        for (j=0; j<=7; j=j+1) begin
+            PCS[0][j] = PC[0][j]; 
+            PCC[0][j] = 1'b0; 
+        end
+        
+        for (i=1; i<=7; i=i+1) begin 
+            for (j=0; j<=6; j=j+1) begin
+                PCS[i][j] = PC[i][j] ^ PCS[i-1][j+1] ^ PCC[i-1][j];
+                PCC[i][j] = MAJ(PC[i][j], PCS[i-1][j+1], PCC[i-1][j]);
+            end
+            
+            PCS[i][7] = PC[i][7];
+        end
+        
+        RAC[0] = 1'b0; 
+        for (i=0; i<=6; i=i+1) begin 
+            RAS[i] = PCS[7][i+1] ^ PCC[7][i] ^ RAC[i]; 
+            RAC[i+1] = MAJ(PCS[7][i+1], PCC[7][i], RAC[i]); 
+        end
+        for (i=0; i<=7; i=i+1) begin
+            P[i] = PCS[i][0]; 
+        end
+        for (i=8; i<=14; i=i+1) begin
+            P[i] = RAS[i-8]; 
+        end
+        
+        P[15] = RAC[7]; 
+    end
 endmodule
