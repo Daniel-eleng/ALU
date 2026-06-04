@@ -5,7 +5,7 @@
 // 
 // Create Date: 05/23/2026 10:42:54 PM
 // Design Name: 
-// Module Name: cla_4bit
+// Module Name: add_sub_4bit
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 

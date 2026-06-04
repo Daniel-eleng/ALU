@@ -5,7 +5,7 @@
 // 
 // Create Date: 05/01/2026 04:00:36 PM
 // Design Name: 
-// Module Name: MUX
+// Module Name: MUX_2_1
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 

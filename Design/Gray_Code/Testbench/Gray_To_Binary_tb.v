@@ -1,11 +1,11 @@
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
 // 
 // Create Date: 05/02/2026 06:47:18 PM
 // Design Name: 
-// Module Name: Multiplier_tb
+// Module Name: Gray_To_Binary_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,33 +19,30 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Multiplier_tb;
 
-    reg  [3:0] X, Y;
-    wire [7:0] P;
+module Gray_To_Binary_tb;
 
-    Top_Multiplier uut (
-        .X(X),
-        .Y(Y),
-        .P(P)
+    reg [3:0] Gray;
+    wire [3:0] Binary;
+
+    Gray_To_Binary TEST (
+        .Gray(Gray),
+        .Binary(Binary)
     );
 
-    integer i, j;
+    integer i;
 
     initial begin
-        {X, Y} = 8'b0;
+        Gray = 0;
 
-        $monitor("Time = %0t | X = %0d | Y = %0d | P = %0d", $time, X, Y, P);
+        $monitor("Time = %0t | Gray = %b | Binary = %b (%2d)", $time, Gray, Binary, Binary);
 
         for (i = 0; i < 16; i = i + 1) begin
-            for (j = 0; j < 16; j = j + 1) begin
-                #5;
-                X = i[3:0];
-                Y = j[3:0];
-            end
+            Gray = i;
+            #5;
         end
 
-        #500;
+        #50;
         $finish;
     end
 

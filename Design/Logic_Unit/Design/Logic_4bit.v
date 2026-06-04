@@ -5,7 +5,7 @@
 // 
 // Create Date: 05/01/2026 04:00:36 PM
 // Design Name: 
-// Module Name: MUX
+// Module Name: Logic_4bit
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 

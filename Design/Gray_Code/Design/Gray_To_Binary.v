@@ -5,7 +5,7 @@
 // 
 // Create Date: 05/02/2026 06:47:18 PM
 // Design Name: 
-// Module Name: Partial_Product
+// Module Name: Gray_To_Binary
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,12 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Partial_Product(input [3:0] X, Y,
-                       output [3:0] PP0,PP1,PP2,PP3);
+module Gray_To_Binary (input [3:0] Gray,
+                       output [3:0] Binary);
 
-    assign PP0 = X & {4{Y[0]}};
-    assign PP1 = X & {4{Y[1]}};
-    assign PP2 = X & {4{Y[2]}};
-    assign PP3 = X & {4{Y[3]}};
+    assign Binary[3] = Gray[3];
+    assign Binary[2] = Binary[3] ^ Gray[2];
+    assign Binary[1] = Binary[2] ^ Gray[1];
+    assign Binary[0] = Binary[1] ^ Gray[0];
     
 endmodule

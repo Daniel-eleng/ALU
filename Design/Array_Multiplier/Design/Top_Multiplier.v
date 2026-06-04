@@ -5,7 +5,7 @@
 // 
 // Create Date: 05/02/2026 06:47:18 PM
 // Design Name: 
-// Module Name: comparator_1bit
+// Module Name: Top_Multiplier
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
