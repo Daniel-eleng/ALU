@@ -1,16 +1,5 @@
 # 4-bit ALU (Arithmetic Logic Unit)
 
-## What an ALU is and what it's used for
-
-An **ALU (Arithmetic Logic Unit)** is the core computation block inside a processor — the hardware component responsible for executing arithmetic operations (addition, subtraction, multiplication) and logical operations (AND, OR, NOR, NAND, comparisons, bit shifts) on two operands. Essentially, any instruction in a program that involves a calculation (from `a + b` to `a < b` or `a << 2`) ends up, at the hardware level, being processed by an ALU.
-
-In a real processor, the ALU receives:
-
-- two operands (in our case, A and B, 4 bits each),
-- an operation code (**Opcode**), which tells it what computation to perform,
-
-and produces a result (**Result**), possibly along with additional flags (carry, overflow, zero, etc.).
-
 This project implements a 4-bit ALU that brings together, under a single structural "wrapper," several modules already developed and documented separately in this repository (each with its own README): a carry-lookahead adder/subtractor, a carry-lookahead multiplier, a comparator, a logic unit, a left/right barrel shifter, and binary↔Gray converters.
 
 ## General architecture
